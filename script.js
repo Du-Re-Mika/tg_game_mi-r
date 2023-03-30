@@ -21,8 +21,8 @@ const startBtn = document.querySelector('.start-btn');
 const keyBtns = document.querySelectorAll('.keys-container button');
 
 // game variables
-const width = 16;
-const height = 24;
+const width = 12;
+const height = 16;
 const numCells = width * height;
 let currentSnake = [2, 1, 0];
 let snakeColor = Math.floor(Math.random() * 360);
@@ -33,14 +33,14 @@ let interval = 0;
 let foodItemIndex = 0; // first cell
 let score = 0;
 
-grid.style.width = `${width * width * 2}px`;
-grid.style.height = `${height * width * 2}px`;
+grid.style.width = `${width * 10 * 2}px`;
+grid.style.height = `${height * 10 * 2}px`;
 
 // create grid cells
 for (let i = 0; i < numCells; i++) {
     const cell = document.createElement('div');
-    cell.style.width = `${width * 2}px`;
-    cell.style.height = `${width * 2}px`;
+    cell.style.width = `${10 * 2}px`;
+    cell.style.height = `${10 * 2}px`;
     grid.appendChild(cell);
 }
 const cells = document.querySelectorAll('.grid div');
@@ -50,8 +50,7 @@ function wait(ms = 0) {
 }
 
 function randomElementFromArray(arr) {
-    const element = arr[Math.floor(Math.random() * arr.length)];
-    return element;
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 async function createFood() {
     foodItemIndex = Math.floor(Math.random() * numCells);
