@@ -21,8 +21,9 @@ const startBtn = document.querySelector('.start-btn');
 const keyBtns = document.querySelectorAll('.keys-container button');
 
 // game variables
-const width = 10;
-const numCells = width * width;
+const width = 16;
+const height = 24;
+const numCells = width * height;
 let currentSnake = [2, 1, 0];
 let snakeColor = Math.floor(Math.random() * 360);
 let snakeColorIncrement = 10;
@@ -32,11 +33,11 @@ let interval = 0;
 let foodItemIndex = 0; // first cell
 let score = 0;
 
-grid.style.width = `${width * 10 * 2}px`;
-grid.style.height = `${width * 10 * 2}px`;
+grid.style.width = `${width * width * 2}px`;
+grid.style.height = `${height * width * 2}px`;
 
 // create grid cells
-for (let i = 0; i < width * width; i++) {
+for (let i = 0; i < numCells; i++) {
     const cell = document.createElement('div');
     cell.style.width = `${width * 2}px`;
     cell.style.height = `${width * 2}px`;
@@ -89,7 +90,7 @@ function startGame() {
 function gameLoop() {
     cells[currentSnake[0]].innerText = '';
     if (
-        (currentSnake[0] + width >= width * width && direction === width) || // hits bottom wall
+        (currentSnake[0] + width >= width * height && direction === width) || // hits bottom wall
         (currentSnake[0] % width === width - 1 && direction === 1) || // hits right wall
         (currentSnake[0] % width === 0 && direction === -1) || // hits left wall
         (currentSnake[0] - width < 0 && direction === -width) || // hits the top wall
